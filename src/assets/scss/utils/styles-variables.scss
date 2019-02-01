@@ -1,0 +1,25 @@
+$pampas: #f7f5f3;
+$japonica: #d67f68;
+$nepal: #949ebe;
+$tapestry: #a85f81;
+$matterhorn: #4c3d48;
+
+$anzac: #df9a39;
+$aqua-forest: #62aa71;
+$promegranate: #f44336;
+
+$brand-primary: $nepal !default;
+$brand-secondary: $japonica !default;
+$brand-info: $matterhorn !default;
+$brand-danger: $promegranate !default;
+$brand-warning: $anzac !default;
+$brand-success: $aqua-forest !default;
+
+$theme-colors: (
+        "primary": $nepal,
+        "secondary": $japonica,
+        "danger": $promegranate,
+        "warnings": $anzac,
+        "success": $aqua-forest,
+        "info": $matterhorn
+);

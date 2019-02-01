@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~src/assets/scss/base/main";
+
+@import "assets/scss/utils/styles-variables";
+@import "assets/scss/utils/styles-utils";
+
+// Required
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+// Optional
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/utilities";

@@ -1,0 +1,93 @@
+<div class="container-vertical-middle">
+    <div class="row pulled my-2 my-sm-4">
+        <div class="container">
+            <h1 class="text-center">Welcome To OChat</h1>
+        </div>
+    </div>
+    <div class="row pulled">
+        <app-alert class="col-12"></app-alert>
+    </div>
+    <div class="row pulled">
+        <div class="col-sm-12 col-md-6 d-table order-1 order-md-0 my-4 my-md-auto">
+            <div class="register-container w-100">
+                <div>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores atque, beatae
+                    cum
+                    eius id, impedit, ipsam ipsum odio reiciendis sapiente velit. Delectus est excepturi laborum
+                    nobis quas quod temporibus? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Debitis,
+                    deleniti distinctio dolor eligendi est eveniet fuga illo ipsam itaque, laborum maxime nulla
+                    placeat, porro possimus provident qui quis reiciendis sunt.
+                </div>
+                <div>
+                    <a class="btn btn-primary register-link" routerLink="/register">
+                        <span>Register</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 d-table m-auto order-0 order-md-1">
+            <div class="login-form-shaper container-vertical-middle">
+                <form (ngSubmit)="onSpaceSubmit()" *ngIf="!space" [formGroup]="spaceForm">
+                    <div class="form-group">
+                        <label for="space">Chat space name</label>
+                        <input [ngClass]="{ 'is-invalid': submitted && sf.space.errors }" class="form-control"
+                               formControlName="space" id="space" type="text"/>
+                        <div *ngIf="submitted && sf.space.errors" class="invalid-feedback">
+                            <div *ngIf="sf.space.errors.required">Space name is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row m-0 justify-content-between">
+                            <!--<img *ngIf="loading" alt="loading..." class="pl-2"-->
+                            <!--src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>-->
+                            <a class="btn btn-primary col-12 col-lg-5 order-2 order-lg-0 sign-in-link"
+                               routerLink="/sign-in">
+                                <span>Sign In</span>
+                            </a>
+                            <div class="spacer d-block d-lg-none m-2 order-1"></div>
+                            <button [disabled]="loading"
+                                    class="btn btn-primary col-12 col-lg-5 order-0 order-lg-2 login-button">
+                                <span>Find space</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <form (ngSubmit)="onLoginSubmit()" *ngIf="space" [formGroup]="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input [ngClass]="{ 'is-invalid': submitted && lf.username.errors }" class="form-control"
+                               formControlName="username" id="username" type="text"/>
+                        <div *ngIf="submitted && lf.username.errors" class="invalid-feedback">
+                            <div *ngIf="lf.username.errors.required">Username is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input [ngClass]="{ 'is-invalid': submitted && lf.password.errors }" class="form-control"
+                               formControlName="password" id="password" type="password"/>
+                        <div *ngIf="submitted && lf.password.errors" class="invalid-feedback">
+                            <div *ngIf="lf.password.errors.required">Password is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row m-0 justify-content-between">
+                            <!--<img *ngIf="loading" alt="loading..." class="pl-2"-->
+                            <!--src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>-->
+                            <a class="btn btn-primary col-12 col-lg-5 order-2 order-lg-0 sign-in-link"
+                               routerLink="/space">
+                                <span>Find space</span>
+                            </a>
+                            <div class="spacer d-block d-lg-none m-2 order-1"></div>
+                            <button [disabled]="loading"
+                                    class="btn btn-primary col-12 col-lg-5 order-0 order-lg-2 login-button">
+                                <span>Sign In</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+            </div>
+        </div>
+    </div>
+</div>

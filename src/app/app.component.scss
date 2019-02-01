@@ -1,0 +1,9 @@
+@import "~src/styles";
+
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+
+:host {
+  position: relative;
+  top: -70px;
+}
