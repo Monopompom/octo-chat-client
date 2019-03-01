@@ -1,8 +1,18 @@
+<app-loader></app-loader>
+
 <header class="sticky-top">
-    <nav class="navbar navbar-light bg-primary">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" routerLink="/">Home</a>
-            <a class="nav-item nav-link" (click)="logout()" *ngIf="currentUser">Logout</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">OChat</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="hmbrgr" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="hmbrgr">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-item nav-link" (click)="logout()" *ngIf="currentUser">Logout</a>
+                </li>
+            </ul>
         </div>
     </nav>
 </header>

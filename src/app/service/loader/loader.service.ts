@@ -1,9 +1,24 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {Subject} from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class LoaderService {
+    private subject = new Subject<any>();
 
-  constructor() { }
+    constructor() {
+    }
+
+    show(type?) {
+        this.subject.next({isVisible: true, type: type})
+    }
+
+    hide() {
+        this.subject.next({isVisible: false})
+    }
+
+    getVisibility() {
+        return this.subject.asObservable();
+    }
 }

@@ -5,6 +5,7 @@ import {AuthenticationService} from "../../service/authentication/authentication
 import {first} from "rxjs/operators";
 import {AlertService} from "../../service/alert/alert.service";
 import {UserService} from "../../service/user/user.service";
+import {LoaderService} from "../../service/loader/loader.service";
 
 @Component({
     selector: 'app-register.d-table.w-100.h-100.pt-5',
@@ -24,12 +25,9 @@ export class RegisterComponent implements OnInit {
         private formBuilder: FormBuilder,
         private userService: UserService,
         private alertService: AlertService,
+        private loaderService: LoaderService,
         private authenticationService: AuthenticationService,
     ) {
-
-        if (this.authenticationService.currentUserValue) {
-            this.router.navigate(['/']);
-        }
     }
 
     get f() {
@@ -42,7 +40,7 @@ export class RegisterComponent implements OnInit {
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
 
-        this.returning = this.route.snapshot.queryParams['r'] || '/';
+        this.returning = this.route.snapshot.queryParams['r'] || '';
     }
 
     onSubmit() {
@@ -53,14 +51,16 @@ export class RegisterComponent implements OnInit {
         }
 
         this.loading = true;
+        this.loaderService.show();
         this.userService.register(this.registerForm.value)
             .pipe(first())
             .subscribe(
                 data => {
 
                     if (!data) {
-                        this.alertService.success('Server responded with an error', true);
                         this.loading = false;
+                        this.loaderService.hide();
+                        this.alertService.error('Server responded with an error', true);
                         return;
                     }
 
@@ -72,26 +72,32 @@ export class RegisterComponent implements OnInit {
                                 data => {
 
                                     if (data) {
+                                        this.loading = false;
+                                        this.loaderService.hide();
                                         this.alertService.success('Registration is successful', true);
                                         this.router.navigate(['']);
                                     } else {
-                                        this.alertService.success('Server responded with an error', true);
+                                        //TODO Case Of Error?
+                                        this.alertService.error('Server responded with an error', true);
                                         this.router.navigate(['sign-in']);
                                     }
                                 },
                                 error => {
-                                    this.alertService.error(error);
                                     this.loading = false;
+                                    this.loaderService.hide();
+                                    this.alertService.error(error.message);
                                 }
                             );
                     } else {
-                        this.alertService.error(data['error']);
                         this.loading = false;
+                        this.loaderService.hide();
+                        this.alertService.error(data['error']);
                     }
                 },
                 error => {
-                    this.alertService.error(error);
                     this.loading = false;
+                    this.loaderService.hide();
+                    this.alertService.error(error.message);
                 }
             );
     }

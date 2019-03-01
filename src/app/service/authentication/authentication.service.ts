@@ -23,20 +23,22 @@ export class AuthenticationService {
 
     login(email: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/login`, {'email': email, 'password': password})
-            .pipe(map(data => {
+            .pipe(map(
+                data => {
 
-                if (data['success']) {
+                    if (data['success']) {
 
-                    if (data['data'] && data['data']['token']) {
-                        localStorage.setItem('currentUser', JSON.stringify(data['data']));
-                        this.currentUserSubject.next(data['data']);
+                        if (data['data'] && data['data']['token']) {
+                            localStorage.setItem('currentUser', JSON.stringify(data['data']));
+                            this.currentUserSubject.next(data['data']);
+                        }
+
+                        return true;
+                    } else {
+                        return null;
                     }
-
-                    return true;
-                } else {
-                    return null;
                 }
-            }));
+            ));
     }
 
     logout() {

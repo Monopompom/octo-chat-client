@@ -4,12 +4,14 @@ import {DashboardComponent} from "./component/dashboard/dashboard.component";
 import {AuthGuard} from "./guard/auth.guard";
 import {LoginComponent} from "./component/login/login.component";
 import {RegisterComponent} from "./component/register/register.component";
+import {ChatComponent} from "./component/chat/chat.component";
 
 const routes: Routes = [
+    {path: ':space/general', component: ChatComponent, canActivate: [AuthGuard]},
     {path: '', component: DashboardComponent, canActivate: [AuthGuard]},
-    {path: 'space', component: LoginComponent},
+    {path: 'find-space', component: LoginComponent},
     {path: 'sign-in', component: LoginComponent, data: {space: true}},
-    {path: 'register', component: RegisterComponent},
+    {path: 'sign-up', component: RegisterComponent},
     {path: '**', redirectTo: ''}
 ];
 

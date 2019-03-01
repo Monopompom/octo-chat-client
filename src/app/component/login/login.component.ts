@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../service/authentication/authentication.service";
 import {first} from "rxjs/operators";
 import {AlertService} from "../../service/alert/alert.service";
+import {LoaderService} from "../../service/loader/loader.service";
 
 @Component({
     selector: 'app-login.d-table.w-100.h-100.pt-5',
@@ -11,25 +12,21 @@ import {AlertService} from "../../service/alert/alert.service";
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-    spaceForm: FormGroup;
-    loginForm: FormGroup;
-    loading = false;
     space = false;
+    loading = false;
     submitted = false;
     returning: string;
-    error = '';
+    loginForm: FormGroup;
+    spaceForm: FormGroup;
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private formBuilder: FormBuilder,
         private alertService: AlertService,
+        private loaderService: LoaderService,
         private authenticationService: AuthenticationService
     ) {
-
-        if (this.authenticationService.currentUserValue) {
-            this.router.navigate(['/']);
-        }
     }
 
     get sf() {
@@ -52,10 +49,10 @@ export class LoginComponent implements OnInit {
             password: ['', Validators.required]
         });
 
-        this.returning = this.route.snapshot.queryParams['r'] || '/';
+        this.returning = this.route.snapshot.queryParams['r'] || '';
     }
 
-    onSpaceSubmit() {
+    onFindSpaceSubmit() {
         this.submitted = true;
 
         if (this.spaceForm.invalid) {
@@ -63,6 +60,7 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
+        this.loaderService.show();
     }
 
     onLoginSubmit() {
@@ -73,15 +71,18 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
+        this.loaderService.show();
         this.authenticationService.login(this.lf.username.value, this.lf.password.value)
             .pipe(first())
             .subscribe(
                 () => {
+                    this.loaderService.hide();
                     this.router.navigate([this.returning]);
                 },
                 error => {
-                    this.alertService.error(error);
                     this.loading = false;
+                    this.loaderService.hide();
+                    this.alertService.error(error.message);
                 });
     }
 }

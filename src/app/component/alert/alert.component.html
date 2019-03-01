@@ -1,3 +1,5 @@
-<div *ngIf="alert">
-    <alert [type]="alert.type" [dismissible]="dismissible" (onClosed)="onClosed(alert)">{{ alert.message }}</alert>
+<div *ngIf="alert" [ngClass]="{ 'alert-toast': alert.options && alert.options.showAs && alert.options.showAs === 'toast' }">
+    <alert [type]="alert.type" [dismissible]="dismissible" (onClosed)="onClosed(alert)">
+        <span [innerHtml]="alert.message"></span>
+    </alert>
 </div>

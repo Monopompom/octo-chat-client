@@ -33,9 +33,9 @@ export class AlertService {
         this.subject.next({type: 'info', message: message});
     }
 
-    error(message: string, keepAfterNavigationChange = false) {
+    error(message: string, keepAfterNavigationChange = false, options?) {
         this.keepAfterNavigationChange = keepAfterNavigationChange;
-        this.subject.next({type: 'danger', message: message});
+        this.subject.next({type: 'danger', message: message, options: options});
     }
 
     warning(message: string, keepAfterNavigationChange = false) {

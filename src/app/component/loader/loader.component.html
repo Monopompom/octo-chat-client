@@ -1,3 +1,12 @@
-<p>
-  loader works!
-</p>
+<div *ngIf="isVisible" class="loader-overlay">
+    <div class="app-loading">
+        <div class="{{type}} pulse">
+            <i *ngIf="type" class="material-icons">
+                {{type}}
+            </i>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="spinner" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
+        </svg>
+    </div>
+</div>

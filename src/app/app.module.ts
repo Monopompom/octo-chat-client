@@ -12,13 +12,18 @@ import {LoaderComponent} from './component/loader/loader.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {RegisterComponent} from './component/register/register.component';
 import {DashboardComponent} from './component/dashboard/dashboard.component';
+import {ChatComponent} from './component/chat/chat.component';
+import {MessageComponent} from './component/message/message.component';
+import {MessageService} from "./service/message/message.service";
 
 @NgModule({
     declarations: [
         AppComponent,
+        ChatComponent,
         AlertComponent,
         LoginComponent,
         LoaderComponent,
+        MessageComponent,
         RegisterComponent,
         DashboardComponent
     ],
@@ -29,6 +34,9 @@ import {DashboardComponent} from './component/dashboard/dashboard.component';
         HttpClientModule,
         ReactiveFormsModule,
         SharedBootstrapModule
+    ],
+    entryComponents: [
+        MessageComponent
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

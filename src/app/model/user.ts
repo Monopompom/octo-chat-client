@@ -1,3 +1,5 @@
+import {Space} from "./space";
+
 export class User {
     id: number;
     firstName: string;
@@ -5,9 +7,10 @@ export class User {
     middleName: string;
     nickname: string;
     email: string;
-    password: string;
+    password?: string;
     token?: string;
     registeredDate: string;
     modifiedDate: string;
+    userSpaces: Space[];
     role: string;
 }
