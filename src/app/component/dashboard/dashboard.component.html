@@ -1,32 +1,53 @@
-<p>Dashboard</p>
+<header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">OChat</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hmbrgr"
+                aria-controls="hmbrgr" aria-label="Toggle navigation"
+                (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<div *ngIf="userFromApi">
-    Current user spaces:
+        <div class="collapse navbar-collapse" id="hmbrgr" [collapse]="isCollapsed">
+            <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-item nav-link" (click)="logout()" *ngIf="currentUser">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
-    <ul>
-        <li *ngFor="let space of userFromApi.userSpaces">
-            <a routerLink="/{{space.name}}/general">{{space.name}}</a>
-        </li>
-    </ul>
+<div class="dashboard container">
+    <p>Dashboard</p>
+
+    <div *ngIf="userFromApi">
+        Current user spaces:
+
+        <ul>
+            <li *ngFor="let space of userFromApi.userSpaces">
+                <a routerLink="/{{space.name}}/general">{{space.name}}</a>
+            </li>
+        </ul>
+    </div>
+
+    <form (ngSubmit)="onCreateSpaceSubmit()" [formGroup]="createSpaceForm">
+        <div class="form-group">
+            <label for="space_name">Chat space name</label>
+            <input [ngClass]="{ 'is-invalid': submitted && csf.name.errors }" class="form-control"
+                   formControlName="name" id="space_name" type="text"/>
+            <div *ngIf="submitted && csf.name.errors" class="invalid-feedback">
+                <div *ngIf="csf.name.errors.required">Space name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row m-0 justify-content-between">
+                <button [disabled]="loading"
+                        class="btn btn-primary col-12 col-lg-5 order-0 order-lg-2 create-space-button">
+                    <span>Create space</span>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <app-alert></app-alert>
 </div>
-
-<form (ngSubmit)="onCreateSpaceSubmit()" [formGroup]="createSpaceForm">
-    <div class="form-group">
-        <label for="space_name">Chat space name</label>
-        <input [ngClass]="{ 'is-invalid': submitted && csf.name.errors }" class="form-control"
-               formControlName="name" id="space_name" type="text"/>
-        <div *ngIf="submitted && csf.name.errors" class="invalid-feedback">
-            <div *ngIf="csf.name.errors.required">Space name is required</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="row m-0 justify-content-between">
-            <button [disabled]="loading"
-                    class="btn btn-primary col-12 col-lg-5 order-0 order-lg-2 create-space-button">
-                <span>Create space</span>
-            </button>
-        </div>
-    </div>
-</form>
-
-<app-alert></app-alert>

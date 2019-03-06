@@ -7,7 +7,7 @@ import {AlertService} from "../../service/alert/alert.service";
 import {LoaderService} from "../../service/loader/loader.service";
 
 @Component({
-    selector: 'app-login.d-table.w-100.h-100.pt-5',
+    selector: 'app-login.container.d-table.w-100.h-100.pt-5',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })

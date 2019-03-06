@@ -45,7 +45,7 @@ export class ChatComponent implements OnInit {
         });
 
         if (!this.space) {
-            this.router.navigate(["/"]);
+            this.router.navigate(["dashboard"]);
         }
     }
 

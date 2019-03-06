@@ -873,10 +873,10 @@ Apache-2.0
 @angular/core
 MIT
 
+ngx-bootstrap/utils
+
 @angular/common
 MIT
-
-ngx-bootstrap/utils
 
 @angular/platform-browser
 MIT
@@ -884,10 +884,12 @@ MIT
 @angular/router
 MIT
 
+ngx-bootstrap/alert
+
 @angular/forms
 MIT
 
-ngx-bootstrap/alert
+ngx-bootstrap/collapse
 
 ngx-bootstrap/component-loader
 
@@ -902,8 +904,6 @@ ngx-bootstrap/modal
 ngx-bootstrap/accordion
 
 ngx-bootstrap/tabs
-
-ngx-bootstrap/collapse
 
 zone.js
 MIT

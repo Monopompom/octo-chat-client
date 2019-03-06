@@ -8,7 +8,7 @@ import {UserService} from "../../service/user/user.service";
 import {LoaderService} from "../../service/loader/loader.service";
 
 @Component({
-    selector: 'app-register.d-table.w-100.h-100.pt-5',
+    selector: 'app-register.container.d-table.w-100.h-100.pt-5',
     templateUrl: './register.component.html',
     styleUrls: ['./register.component.scss']
 })
@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
                                         this.loading = false;
                                         this.loaderService.hide();
                                         this.alertService.success('Registration is successful', true);
-                                        this.router.navigate(['']);
+                                        this.router.navigate(['dashboard']);
                                     } else {
                                         //TODO Case Of Error?
                                         this.alertService.error('Server responded with an error', true);

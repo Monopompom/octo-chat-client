@@ -7,12 +7,12 @@ import {RegisterComponent} from "./component/register/register.component";
 import {ChatComponent} from "./component/chat/chat.component";
 
 const routes: Routes = [
-    {path: ':space/general', component: ChatComponent, canActivate: [AuthGuard]},
-    {path: '', component: DashboardComponent, canActivate: [AuthGuard]},
+    {path: ':space/:general', component: ChatComponent, canActivate: [AuthGuard]},
+    {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
     {path: 'find-space', component: LoginComponent},
     {path: 'sign-in', component: LoginComponent, data: {space: true}},
     {path: 'sign-up', component: RegisterComponent},
-    {path: '**', redirectTo: ''}
+    {path: '**', redirectTo: 'dashboard'}
 ];
 
 @NgModule({

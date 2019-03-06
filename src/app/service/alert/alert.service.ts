@@ -43,7 +43,7 @@ export class AlertService {
         this.subject.next({type: 'warning', message: message});
     }
 
-    getMessage(): Observable<any> {
+    getVisibility(): Observable<any> {
         return this.subject.asObservable();
     }
 }

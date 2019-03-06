@@ -1,4 +1,37 @@
 @import "~src/styles";
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/buttons";
-@import "../../../assets/scss/auth/login";
+
+.container-vertical-middle {
+  display: table-cell;
+  vertical-align: middle;
+
+  & .pulled {
+    top: -60px;
+    position: relative;
+
+    @include media-breakpoint-down(md) {
+      top: 0;
+    }
+  }
+}
+
+.login-form-shaper {
+  padding: 55px;
+  background-color: lighten($brand-primary, 20%);
+  border-top-left-radius: 15% 50%;
+  border-bottom-left-radius: 15% 50%;
+
+  & label,
+  & .login-button {
+    float: right;
+  }
+}
+
+.register-container {
+  width: 320px;
+  height: 100%;
+  padding: 25px;
+  text-align: center;
+  background-color: lighten($brand-primary, 20%);
+}

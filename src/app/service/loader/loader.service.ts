@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -11,14 +11,14 @@ export class LoaderService {
     }
 
     show(type?) {
-        this.subject.next({isVisible: true, type: type})
+        this.subject.next({type: type})
     }
 
     hide() {
-        this.subject.next({isVisible: false})
+        this.subject.next(false)
     }
 
-    getVisibility() {
+    getVisibility(): Observable<any> {
         return this.subject.asObservable();
     }
 }

@@ -8,9 +8,7 @@ import {LoaderService} from "../../service/loader/loader.service";
     styleUrls: ['./loader.component.scss']
 })
 export class LoaderComponent implements OnInit, OnDestroy {
-    isVisible = false;
-    type = "logo";
-
+    loader: any;
     private subscription: Subscription;
 
     constructor(private loaderService: LoaderService) {
@@ -21,17 +19,14 @@ export class LoaderComponent implements OnInit, OnDestroy {
             loader => {
 
                 if (!loader) {
+                    setTimeout(() => this.loader = false, 400);
                     return;
                 }
 
-                if (loader.type) {
-                    this.type = loader.type;
-                }
+                this.loader = loader;
 
-                if (loader.isVisible) {
-                    this.isVisible = true;
-                } else {
-                    setTimeout(() => this.isVisible = false, 400);
+                if (loader.type) {
+                    this.loader.type = loader.type;
                 }
             }
         );

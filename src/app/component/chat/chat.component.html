@@ -1,26 +1,31 @@
-<p>
-    {{spaceName}} chat works!
-</p>
+<app-alert></app-alert>
 
-<div id="messages">
-    <ng-template #messages></ng-template>
-</div>
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <div class="sidebar col-2 h-100 {{currentUser.theme || 'default'}}">
+            Sidebar
+        </div>
+        <div class="col-10 h-100">
+            <div id="messages">
+                <ng-template #messages></ng-template>
+            </div>
 
-<form (ngSubmit)="onChatSubmit()" [formGroup]="chatForm">
+            <form (ngSubmit)="onChatSubmit()" [formGroup]="chatForm">
 
-    <div class="form-group">
-        <label for="message">Message</label>
-        <input [ngClass]="{ 'is-invalid': submitted && cf.message.errors }" class="form-control"
-               formControlName="message" id="message" type="text"/>
-        <div *ngIf="submitted && cf.message.errors" class="invalid-feedback">
-            <div *ngIf="cf.message.errors.required">Message is required</div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <input [ngClass]="{ 'is-invalid': submitted && cf.message.errors }" class="form-control"
+                           formControlName="message" id="message" type="text"/>
+                    <div *ngIf="submitted && cf.message.errors" class="invalid-feedback">
+                        <div *ngIf="cf.message.errors.required">Message is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary col-12 col-lg-5 order-0 order-lg-2 chat-button">
+                        <span>Send</span>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
-    <div class="form-group">
-
-        <button class="btn btn-primary col-12 col-lg-5 order-0 order-lg-2 chat-button">
-            <span>Send</span>
-        </button>
-
-    </div>
-</form>
+</div>

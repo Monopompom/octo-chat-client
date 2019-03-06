@@ -13,4 +13,5 @@ export class User {
     modifiedDate: string;
     userSpaces: Space[];
     role: string;
+    theme: string = "default";
 }

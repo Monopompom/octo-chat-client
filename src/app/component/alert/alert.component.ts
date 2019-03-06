@@ -16,10 +16,11 @@ export class AlertComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.subscription = this.alertService.getMessage().subscribe(
+        this.subscription = this.alertService.getVisibility().subscribe(
             alert => {
 
                 if (!alert) {
+                    this.alert = false;
                     return;
                 }
 

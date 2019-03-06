@@ -14,7 +14,6 @@ import {RegisterComponent} from './component/register/register.component';
 import {DashboardComponent} from './component/dashboard/dashboard.component';
 import {ChatComponent} from './component/chat/chat.component';
 import {MessageComponent} from './component/message/message.component';
-import {MessageService} from "./service/message/message.service";
 
 @NgModule({
     declarations: [

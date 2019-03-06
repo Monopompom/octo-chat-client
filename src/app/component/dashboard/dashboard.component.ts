@@ -9,6 +9,7 @@ import {AlertService} from "../../service/alert/alert.service";
 import {LoaderService} from "../../service/loader/loader.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SpaceService} from "../../service/space/space.service";
+import {Role} from "../../model/role";
 
 @Component({
     selector: 'app-dashboard',
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
     submitted = false;
     currentUser: User;
     userFromApi: User;
+    isCollapsed = true;
     reloadTimeOut = 10000;
     createSpaceForm: FormGroup;
 
@@ -124,5 +126,14 @@ export class DashboardComponent implements OnInit {
                     this.alertService.error(error.message);
                 }
             );
+    }
+
+    get isAdmin() {
+        return this.currentUser && this.currentUser.role === Role.Admin;
+    }
+
+    logout() {
+        this.authenticationService.logout();
+        this.router.navigate(['sign-in']);
     }
 }
